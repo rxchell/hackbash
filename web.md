@@ -84,7 +84,7 @@ codes begin with 5: server's end, eg programming error, script not working prope
 ## Play with HTTP requests using Burp Suite
 
 
-# Cross-site scripting 
+# Cross-site scripting (XSS) 
 
 ## Cookies 
 - how would you design a system where multiple webpages need authentication with a common set of credentials?
@@ -122,7 +122,8 @@ fetch("https://gmail.com")
 - fliter user input when it arrives at the server. reject anything that does not conform to expected input
 - encode data (eg HTML encoding[https://emn178.github.io/online-tools/html_encode.html], JavaScript encoding) on output, so browser knows which part of html to not execute. using wrong encoding scheme for the context can lead to bypasses 
 - set sensitive cookies to HttpOnly so they are not accessible directly by JavaScript. prevents stealing the cookie directly, but still lets attackers do what they want as the user under the origin
-- Content Security Policy: tell the browser that only certain scripts should execute 
+- Content Security Policy (http header in http response): tell the browser that browser should only execute certain scripts (eg loaded remotely from particular domains / follow particular format / have particular content)
+- 
 
 
 
