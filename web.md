@@ -128,6 +128,7 @@ fetch("https://gmail.com")
 
 # SQL injection
 - web applications will often have to retrieve data from a database, which often depends on data provided by the user eg retrieving product's details based on ID supplied by user, logging in with username and password
+- https://github.com/swisskyrepo/PayloadsAllTheThings
 
 ## how to prevent SQL injection 
 - root cause of SQL injection is concatenating user input directly with user commands. SQL server cannot tell which is which
