@@ -84,5 +84,47 @@ codes begin with 5: server's end, eg programming error, script not working prope
 ## Play with HTTP requests using Burp Suite
 
 
+# Cross-site scripting 
+
+## Cookies 
+- how would you design a system where multiple webpages need authentication with a common set of credentials?
+- information sent by browser to server, and server will send the info related to the site
+- `setCookies` header
+- once issued with a cookie, the browser will send whatever request you make with the server
+- if someone takes your cookies, someone can use your identity 
+
+1. HTTP request from client (browser) to server (website)
+2. HTTP response + **Set-Cookies** from server to client
+3. HTTP request + **Cookies (SessionID)** from client to server
+4. HTTP response from server to client 
+
+## Making HTTP requests in JavaScript
+- **Fetch API** (old way: xml http requests) for JavaScript to pull information from websites to dynamically update a page
+``` JavaScript
+response = awaits fetch("/secret");  // background request to get secret page and store in response. (successful authentication + send cookies --> fetch is possible) 
+text = await response.text();        // get response text 
+console.log(text);
+```
+
+```JavaScript
+fetch("https://gmail.com")
+```
+- Not possible
+  
+## Same origin (scheme + host + port) policy 
+- webpages only permitted to access data from other sources if they have the same origin 
+- eg https + google.com + 403
+- allows attacker to introduce malicious JavaScript within the same origin
+- 
+- **webhook.site** gives you an URL to infiltrate
+
+## Prevent cross-site scripting 
+- fliter user input when it arrives at the server. reject anything that does not conform to expected input
+- encode data (eg HTML encoding[https://emn178.github.io/online-tools/html_encode.html], JavaScript encoding) on output, so browser knows which part of html to not execute. using wrong encoding scheme for the context can lead to bypasses 
+- set sensitive cookies to HttpOnly so they are not accessible directly by JavaScript. prevents stealing the cookie directly, but still lets attackers do what they want as the user under the origin
+- Content Security Policy: tell the browser that only certain scripts should execute 
+
+
+
 
 
